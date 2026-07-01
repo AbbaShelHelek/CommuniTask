@@ -1,5 +1,6 @@
 plugins {
     alias(libs.plugins.android.application)
+    id("com.google.gms.google-services")
 }
 
 android {
@@ -42,7 +43,7 @@ dependencies {
     implementation(libs.appcompat)
     implementation(libs.constraintlayout)
     implementation(libs.material)
-
+    implementation(platform("com.google.firebase:firebase-bom:34.15.0"))
     implementation(libs.navigation.fragment)
     implementation(libs.navigation.ui)
     implementation(libs.androidx.recyclerview)
