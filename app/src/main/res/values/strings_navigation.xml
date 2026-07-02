@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="screen_task_feed">Task Feed</string>
+    <string name="screen_my_tasks">My Tasks</string>
+    <string name="screen_profile">Profile</string>
+</resources>
