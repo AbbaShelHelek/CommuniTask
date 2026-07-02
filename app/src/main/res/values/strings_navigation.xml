@@ -1,6 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
+    <string name="screen_splash">CommuniTask</string>
+    <string name="screen_login">Login</string>
+    <string name="screen_register">Register</string>
     <string name="screen_task_feed">Task Feed</string>
     <string name="screen_my_tasks">My Tasks</string>
     <string name="screen_profile">Profile</string>
+    <string name="screen_task_detail">Task Details</string>
+    <string name="screen_task_editor">Task Editor</string>
 </resources>
