@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <item
+        android:id="@id/taskFeedFragment"
+        android:icon="@drawable/ic_feed_24"
+        android:title="@string/screen_task_feed" />
+
+    <item
+        android:id="@id/myTasksFragment"
+        android:icon="@drawable/ic_my_tasks_24"
+        android:title="@string/screen_my_tasks" />
+
+    <item
+        android:id="@id/profileFragment"
+        android:icon="@drawable/ic_profile_24"
+        android:title="@string/screen_profile" />
+</menu>
