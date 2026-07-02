@@ -9,7 +9,7 @@ public class CommunityTask {
     private String title;
     private String description;
     private String category;
-    private String status;
+    private TaskStatus status;
     private String ownerUid;
     private String ownerName;
     private long createdAtMillis;
@@ -19,7 +19,7 @@ public class CommunityTask {
     }
 
     public CommunityTask(String id, String title, String description, String category,
-                         String status, String ownerUid, String ownerName,
+                         TaskStatus status, String ownerUid, String ownerName,
                          long createdAtMillis, long updatedAtMillis) {
         this.id = id;
         this.title = title;
@@ -64,11 +64,11 @@ public class CommunityTask {
         this.category = category;
     }
 
-    public String getStatus() {
+    public TaskStatus getStatus() {
         return status;
     }
 
-    public void setStatus(String status) {
+    public void setStatus(TaskStatus status) {
         this.status = status;
     }
 
