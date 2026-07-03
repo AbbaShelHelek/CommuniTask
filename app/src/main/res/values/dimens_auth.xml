@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <dimen name="auth_screen_padding">24dp</dimen>
+    <dimen name="auth_card_padding">24dp</dimen>
+    <dimen name="auth_card_corner_radius">24dp</dimen>
+    <dimen name="auth_card_elevation">6dp</dimen>
+    <dimen name="auth_card_stroke_width">1dp</dimen>
+    <dimen name="auth_field_top_margin">32dp</dimen>
+    <dimen name="auth_button_top_margin">28dp</dimen>
+    <dimen name="auth_button_height">56dp</dimen>
+    <dimen name="auth_button_corner_radius">18dp</dimen>
+    <dimen name="auth_orb_large">260dp</dimen>
+    <dimen name="auth_orb_small">180dp</dimen>
+    <dimen name="auth_orb_top_offset">-84dp</dimen>
+    <dimen name="auth_orb_end_offset">-88dp</dimen>
+    <dimen name="auth_orb_start_offset">-72dp</dimen>
+    <dimen name="auth_orb_bottom_offset">-48dp</dimen>
+</resources>

@@ -39,4 +39,17 @@ public class AuthViewModel extends ViewModel {
     public void checkCurrentSession() {
         signedIn.setValue(authRepository.isUserSignedIn());
     }
+
+    public void login(String email, String password) {
+        loginState.setValue(UiState.loading());
+        authRepository.login(email, password)
+                .addOnSuccessListener(authResult -> {
+                    signedIn.setValue(true);
+                    loginState.setValue(UiState.success(null));
+                })
+                .addOnFailureListener(exception -> {
+                    signedIn.setValue(false);
+                    loginState.setValue(UiState.error(null));
+                });
+    }
 }

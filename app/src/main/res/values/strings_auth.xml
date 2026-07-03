@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="auth_login_title">Login</string>
+    <string name="auth_login_eyebrow">CommuniTask</string>
+    <string name="auth_login_subtitle">Coordinate local help without losing the thread.</string>
+    <string name="auth_email_hint">Email</string>
+    <string name="auth_password_hint">Password</string>
+    <string name="auth_login_button">Login</string>
+    <string name="auth_go_to_register">Create an account</string>
+    <string name="auth_error_invalid_email">Enter a valid email address.</string>
+    <string name="auth_error_invalid_password">Password must be at least 6 characters.</string>
+    <string name="auth_error_login_failed">Login failed. Check your email and password.</string>
+</resources>
