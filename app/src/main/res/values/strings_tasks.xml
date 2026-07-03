@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="task_list_title_fallback">Untitled task</string>
+    <string name="task_list_description_fallback">No description provided.</string>
+    <string name="task_list_category_fallback">Uncategorized</string>
+    <string name="task_list_owner_fallback">Unknown owner</string>
+    <string name="task_list_status_fallback">Status unknown</string>
+    <string name="task_list_category_format">Category: %1$s</string>
+    <string name="task_list_owner_format">Owner: %1$s</string>
+    <string name="task_list_status_format">Status: %1$s</string>
+    <string name="task_list_status_open">Open</string>
+    <string name="task_list_status_in_progress">In progress</string>
+    <string name="task_list_status_completed">Completed</string>
+</resources>
