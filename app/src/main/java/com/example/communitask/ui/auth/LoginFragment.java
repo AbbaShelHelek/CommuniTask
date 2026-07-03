@@ -22,7 +22,6 @@ public class LoginFragment extends Fragment {
 
     private FragmentLoginBinding binding;
     private AuthViewModel authViewModel;
-    private boolean hasNavigated;
 
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container,
@@ -47,8 +46,8 @@ public class LoginFragment extends Fragment {
     private void submitLogin() {
         clearErrors();
 
-        String email = getInputText(binding.emailEditText.getText());
-        String password = getInputText(binding.passwordEditText.getText());
+        String email = getTrimmedInputText(binding.emailEditText.getText());
+        String password = getRawInputText(binding.passwordEditText.getText());
 
         boolean isValid = true;
         if (!ValidationUtils.isEmailValid(email)) {
@@ -82,7 +81,9 @@ public class LoginFragment extends Fragment {
             return;
         }
 
-        if (state.getStatus() == UiState.Status.SUCCESS && !hasNavigated) {
+        binding.loginErrorText.setVisibility(View.GONE);
+
+        if (state.getStatus() == UiState.Status.SUCCESS) {
             navigateToFeed();
         }
     }
@@ -94,7 +95,6 @@ public class LoginFragment extends Fragment {
             return;
         }
 
-        hasNavigated = true;
         navController.navigate(R.id.action_loginFragment_to_taskFeedFragment);
     }
 
@@ -104,11 +104,18 @@ public class LoginFragment extends Fragment {
         binding.loginErrorText.setVisibility(View.GONE);
     }
 
-    private String getInputText(CharSequence value) {
+    private String getTrimmedInputText(CharSequence value) {
         if (value == null) {
             return "";
         }
         return value.toString().trim();
+    }
+
+    private String getRawInputText(CharSequence value) {
+        if (value == null) {
+            return "";
+        }
+        return value.toString();
     }
 
     @Override

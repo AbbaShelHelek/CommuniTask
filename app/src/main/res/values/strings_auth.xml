@@ -20,4 +20,5 @@
     <string name="auth_error_password_mismatch">Passwords do not match.</string>
     <string name="auth_error_login_failed">Login failed. Check your email and password.</string>
     <string name="auth_error_registration_failed">Registration failed. Please check your details and try again.</string>
+    <string name="auth_error_profile_setup_failed">Account created, but profile setup failed. Tap Create account to retry.</string>
 </resources>

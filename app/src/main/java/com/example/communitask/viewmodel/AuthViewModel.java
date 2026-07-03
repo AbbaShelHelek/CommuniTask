@@ -19,6 +19,7 @@ public class AuthViewModel extends ViewModel {
     private final MutableLiveData<Boolean> signedIn;
     private final MutableLiveData<UiState<Void>> loginState;
     private final MutableLiveData<UiState<Void>> registrationState;
+    private UserProfile pendingUserProfile;
 
     public AuthViewModel() {
         authRepository = new AuthRepository();
@@ -44,17 +45,15 @@ public class AuthViewModel extends ViewModel {
         signedIn.setValue(authRepository.isUserSignedIn());
     }
 
+    public boolean hasPendingProfileCreation() {
+        return pendingUserProfile != null;
+    }
+
     public void login(String email, String password) {
         loginState.setValue(UiState.loading());
         authRepository.login(email, password)
-                .addOnSuccessListener(authResult -> {
-                    signedIn.setValue(true);
-                    loginState.setValue(UiState.success(null));
-                })
-                .addOnFailureListener(exception -> {
-                    signedIn.setValue(false);
-                    loginState.setValue(UiState.error(null));
-                });
+                .addOnSuccessListener(authResult -> loginState.setValue(UiState.success(null)))
+                .addOnFailureListener(exception -> loginState.setValue(UiState.error(null)));
     }
 
     public void register(String displayName, String email, String password) {
@@ -63,30 +62,36 @@ public class AuthViewModel extends ViewModel {
                 .addOnSuccessListener(authResult -> {
                     String uid = authRepository.getCurrentUserId();
                     if (uid == null) {
-                        signedIn.setValue(false);
                         registrationState.setValue(UiState.error(null));
                         return;
                     }
 
-                    UserProfile userProfile = new UserProfile(
+                    pendingUserProfile = new UserProfile(
                             uid,
                             displayName,
                             email,
                             System.currentTimeMillis()
                     );
-                    userRepository.createUserProfile(userProfile)
-                            .addOnSuccessListener(unused -> {
-                                signedIn.setValue(true);
-                                registrationState.setValue(UiState.success(null));
-                            })
-                            .addOnFailureListener(exception -> {
-                                signedIn.setValue(true);
-                                registrationState.setValue(UiState.error(null));
-                            });
+                    savePendingProfile();
                 })
-                .addOnFailureListener(exception -> {
-                    signedIn.setValue(false);
-                    registrationState.setValue(UiState.error(null));
-                });
+                .addOnFailureListener(exception -> registrationState.setValue(UiState.error(null)));
+    }
+
+    public void retryPendingProfileCreation() {
+        if (pendingUserProfile == null) {
+            return;
+        }
+
+        registrationState.setValue(UiState.loading());
+        savePendingProfile();
+    }
+
+    private void savePendingProfile() {
+        userRepository.createUserProfile(pendingUserProfile)
+                .addOnSuccessListener(unused -> {
+                    pendingUserProfile = null;
+                    registrationState.setValue(UiState.success(null));
+                })
+                .addOnFailureListener(exception -> registrationState.setValue(UiState.error(null)));
     }
 }

@@ -11,8 +11,6 @@
     <color name="auth_button_background">#1D2722</color>
     <color name="auth_button_text">#FFFDF8</color>
     <color name="auth_field_background">#FFFFFF</color>
-    <color name="auth_orb_primary">#00000000</color>
-    <color name="auth_orb_secondary">#00000000</color>
     <color name="auth_error_background">#FFFFEFE8</color>
     <color name="auth_error_text">#8A2C16</color>
 </resources>

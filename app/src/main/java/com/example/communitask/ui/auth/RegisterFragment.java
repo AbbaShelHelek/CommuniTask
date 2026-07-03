@@ -22,7 +22,6 @@ public class RegisterFragment extends Fragment {
 
     private FragmentRegisterBinding binding;
     private AuthViewModel authViewModel;
-    private boolean hasNavigated;
 
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container,
@@ -39,7 +38,7 @@ public class RegisterFragment extends Fragment {
         binding.registerButton.setOnClickListener(v -> submitRegistration());
         binding.loginButton.setOnClickListener(v ->
                 NavHostFragment.findNavController(this)
-                        .navigate(R.id.action_registerFragment_to_loginFragment));
+                        .navigateUp());
 
         authViewModel.getRegistrationState()
                 .observe(getViewLifecycleOwner(), this::renderRegistrationState);
@@ -48,10 +47,15 @@ public class RegisterFragment extends Fragment {
     private void submitRegistration() {
         clearErrors();
 
-        String displayName = getInputText(binding.displayNameEditText.getText());
-        String email = getInputText(binding.emailEditText.getText());
-        String password = getInputText(binding.passwordEditText.getText());
-        String confirmPassword = getInputText(binding.confirmPasswordEditText.getText());
+        if (authViewModel.hasPendingProfileCreation()) {
+            authViewModel.retryPendingProfileCreation();
+            return;
+        }
+
+        String displayName = getTrimmedInputText(binding.displayNameEditText.getText());
+        String email = getTrimmedInputText(binding.emailEditText.getText());
+        String password = getRawInputText(binding.passwordEditText.getText());
+        String confirmPassword = getRawInputText(binding.confirmPasswordEditText.getText());
 
         boolean isValid = true;
         if (!ValidationUtils.isRequiredTextValid(displayName)) {
@@ -92,12 +96,17 @@ public class RegisterFragment extends Fragment {
         binding.registerButton.setEnabled(!isLoading);
 
         if (state.getStatus() == UiState.Status.ERROR) {
-            binding.registerErrorText.setText(R.string.auth_error_registration_failed);
+            int errorMessageId = authViewModel.hasPendingProfileCreation()
+                    ? R.string.auth_error_profile_setup_failed
+                    : R.string.auth_error_registration_failed;
+            binding.registerErrorText.setText(errorMessageId);
             binding.registerErrorText.setVisibility(View.VISIBLE);
             return;
         }
 
-        if (state.getStatus() == UiState.Status.SUCCESS && !hasNavigated) {
+        binding.registerErrorText.setVisibility(View.GONE);
+
+        if (state.getStatus() == UiState.Status.SUCCESS) {
             navigateToFeed();
         }
     }
@@ -109,7 +118,6 @@ public class RegisterFragment extends Fragment {
             return;
         }
 
-        hasNavigated = true;
         navController.navigate(R.id.action_registerFragment_to_taskFeedFragment);
     }
 
@@ -121,11 +129,18 @@ public class RegisterFragment extends Fragment {
         binding.registerErrorText.setVisibility(View.GONE);
     }
 
-    private String getInputText(CharSequence value) {
+    private String getTrimmedInputText(CharSequence value) {
         if (value == null) {
             return "";
         }
         return value.toString().trim();
+    }
+
+    private String getRawInputText(CharSequence value) {
+        if (value == null) {
+            return "";
+        }
+        return value.toString();
     }
 
     @Override

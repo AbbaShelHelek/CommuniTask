@@ -12,7 +12,9 @@
             app:destination="@id/loginFragment" />
         <action
             android:id="@+id/action_splashFragment_to_taskFeedFragment"
-            app:destination="@id/taskFeedFragment" />
+            app:destination="@id/taskFeedFragment"
+            app:popUpTo="@id/splashFragment"
+            app:popUpToInclusive="true" />
     </fragment>
 
     <fragment
@@ -23,7 +25,9 @@
             app:destination="@id/registerFragment" />
         <action
             android:id="@+id/action_loginFragment_to_taskFeedFragment"
-            app:destination="@id/taskFeedFragment" />
+            app:destination="@id/taskFeedFragment"
+            app:popUpTo="@id/splashFragment"
+            app:popUpToInclusive="true" />
     </fragment>
 
     <fragment
@@ -34,7 +38,9 @@
             app:destination="@id/loginFragment" />
         <action
             android:id="@+id/action_registerFragment_to_taskFeedFragment"
-            app:destination="@id/taskFeedFragment" />
+            app:destination="@id/taskFeedFragment"
+            app:popUpTo="@id/splashFragment"
+            app:popUpToInclusive="true" />
     </fragment>
 
     <fragment

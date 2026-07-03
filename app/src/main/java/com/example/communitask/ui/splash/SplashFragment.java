@@ -20,7 +20,6 @@ public class SplashFragment extends Fragment {
 
     private FragmentSplashBinding binding;
     private AuthViewModel authViewModel;
-    private boolean hasNavigated;
 
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container,
@@ -35,17 +34,12 @@ public class SplashFragment extends Fragment {
         authViewModel = new ViewModelProvider(this).get(AuthViewModel.class);
 
         authViewModel.getSignedIn().observe(getViewLifecycleOwner(), isSignedIn -> {
-            if (hasNavigated) {
-                return;
-            }
-
             NavController navController = NavHostFragment.findNavController(this);
             if (navController.getCurrentDestination() == null
                     || navController.getCurrentDestination().getId() != R.id.splashFragment) {
                 return;
             }
 
-            hasNavigated = true;
             int actionId = Boolean.TRUE.equals(isSignedIn)
                     ? R.id.action_splashFragment_to_taskFeedFragment
                     : R.id.action_splashFragment_to_loginFragment;
