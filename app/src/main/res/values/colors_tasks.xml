@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="task_card_background">#FFFDF8</color>
+    <color name="task_card_stroke">#D8D0C2</color>
+    <color name="task_background_start">#F8F4EC</color>
+    <color name="task_background_center">#EEF2E8</color>
+    <color name="task_background_end">#DDE7DA</color>
+    <color name="task_ink">#1D2722</color>
+    <color name="task_muted">#68736D</color>
+    <color name="task_accent">#3F6F5D</color>
+    <color name="task_chip_background">#EEF2E8</color>
+    <color name="task_status_background">#FFFFEFE8</color>
+    <color name="task_state_background">#FFFFEFE8</color>
+</resources>
