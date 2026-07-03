@@ -9,7 +9,7 @@ import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
 import androidx.navigation.NavController;
-import androidx.navigation.Navigation;
+import androidx.navigation.fragment.NavHostFragment;
 import androidx.navigation.ui.NavigationUI;
 
 import com.example.communitask.databinding.ActivityMainBinding;
@@ -27,7 +27,13 @@ public class MainActivity extends AppCompatActivity {
         binding = ActivityMainBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
 
-        NavController navController = Navigation.findNavController(this, R.id.nav_host_fragment);
+        NavHostFragment navHostFragment = (NavHostFragment) getSupportFragmentManager()
+                .findFragmentById(R.id.nav_host_fragment);
+        if (navHostFragment == null) {
+            throw new IllegalStateException("NavHostFragment is missing from activity_main.xml");
+        }
+
+        NavController navController = navHostFragment.getNavController();
         NavigationUI.setupWithNavController(binding.bottomNavigation, navController);
         navController.addOnDestinationChangedListener((controller, destination, arguments) -> {
             int destinationId = destination.getId();
