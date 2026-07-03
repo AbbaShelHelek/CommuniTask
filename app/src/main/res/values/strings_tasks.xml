@@ -11,4 +11,10 @@
     <string name="task_list_status_open">Open</string>
     <string name="task_list_status_in_progress">In progress</string>
     <string name="task_list_status_completed">Completed</string>
+    <string name="task_feed_eyebrow">Community board</string>
+    <string name="task_feed_title">Task Feed</string>
+    <string name="task_feed_subtitle">Browse open community tasks and find where help is needed.</string>
+    <string name="task_feed_loading">Loading community tasks...</string>
+    <string name="task_feed_empty">No community tasks are available yet.</string>
+    <string name="task_feed_error">Unable to load community tasks. Please try again later.</string>
 </resources>
