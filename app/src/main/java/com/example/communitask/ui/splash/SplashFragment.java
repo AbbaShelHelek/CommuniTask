@@ -43,7 +43,7 @@ public class SplashFragment extends Fragment {
             int actionId = Boolean.TRUE.equals(isSignedIn)
                     ? R.id.action_splashFragment_to_taskFeedFragment
                     : R.id.action_splashFragment_to_loginFragment;
-            navController.navigate(actionId); // Using equals to avoid null exceptions.
+            navController.navigate(actionId);
         });
 
         authViewModel.checkCurrentSession();

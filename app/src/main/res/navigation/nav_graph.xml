@@ -34,9 +34,6 @@
         android:id="@+id/registerFragment"
         android:name="com.example.communitask.ui.auth.RegisterFragment">
         <action
-            android:id="@+id/action_registerFragment_to_loginFragment"
-            app:destination="@id/loginFragment" />
-        <action
             android:id="@+id/action_registerFragment_to_taskFeedFragment"
             app:destination="@id/taskFeedFragment"
             app:popUpTo="@id/splashFragment"
