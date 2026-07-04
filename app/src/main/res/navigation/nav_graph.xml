@@ -75,6 +75,9 @@
         <action
             android:id="@+id/action_taskDetailFragment_to_taskEditorFragment"
             app:destination="@id/taskEditorFragment" />
+        <action
+            android:id="@+id/action_taskDetailFragment_to_confirmDeleteTaskDialogFragment"
+            app:destination="@id/confirmDeleteTaskDialogFragment" />
     </fragment>
 
     <fragment
@@ -86,4 +89,12 @@
             app:argType="string"
             app:nullable="true" />
     </fragment>
+
+    <dialog
+        android:id="@+id/confirmDeleteTaskDialogFragment"
+        android:name="com.example.communitask.ui.task.ConfirmDeleteTaskDialogFragment">
+        <argument
+            android:name="taskId"
+            app:argType="string" />
+    </dialog>
 </navigation>
