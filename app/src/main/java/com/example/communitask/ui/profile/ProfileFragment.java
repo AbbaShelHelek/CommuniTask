@@ -9,6 +9,8 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.ViewModelProvider;
+import androidx.navigation.NavController;
+import androidx.navigation.fragment.NavHostFragment;
 
 import com.example.communitask.R;
 import com.example.communitask.databinding.FragmentProfileBinding;
@@ -20,6 +22,7 @@ public class ProfileFragment extends Fragment {
 
     private FragmentProfileBinding binding;
     private ProfileViewModel profileViewModel;
+    private boolean hasNavigatedAfterLogout;
 
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container,
@@ -114,8 +117,23 @@ public class ProfileFragment extends Fragment {
         }
 
         if (state.getStatus() == UiState.Status.SUCCESS) {
-            showSuccessMessage(R.string.profile_logout_success);
+            navigateToLoginAfterLogout();
         }
+    }
+
+    private void navigateToLoginAfterLogout() {
+        if (hasNavigatedAfterLogout) {
+            return;
+        }
+
+        NavController navController = NavHostFragment.findNavController(this);
+        if (navController.getCurrentDestination() == null
+                || navController.getCurrentDestination().getId() != R.id.profileFragment) {
+            return;
+        }
+
+        hasNavigatedAfterLogout = true;
+        navController.navigate(R.id.action_profileFragment_to_loginFragment);
     }
 
     private void bindProfile(UserProfile profile) {
