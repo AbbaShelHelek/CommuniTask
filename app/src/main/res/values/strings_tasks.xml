@@ -28,6 +28,7 @@
     <string name="task_detail_loading">Loading task details...</string>
     <string name="task_detail_missing">This task could not be found.</string>
     <string name="task_detail_load_error">Unable to load this task. Please try again later.</string>
+    <string name="task_detail_delete_error">Unable to delete this task. Please try again later.</string>
     <string name="task_detail_category_format">Category: %1$s</string>
     <string name="task_detail_status_format">Status: %1$s</string>
     <string name="task_detail_owner_format">Created by %1$s</string>
@@ -47,4 +48,8 @@
     <string name="task_editor_missing_error">This task is no longer available.</string>
     <string name="task_editor_permission_error">Only the task owner can edit this task.</string>
     <string name="task_editor_save_error">Unable to save this task. Please try again later.</string>
+    <string name="task_delete_dialog_title">Delete task?</string>
+    <string name="task_delete_dialog_message">This will remove the task from the community board.</string>
+    <string name="task_delete_dialog_confirm">Delete</string>
+    <string name="task_delete_dialog_cancel">Cancel</string>
 </resources>

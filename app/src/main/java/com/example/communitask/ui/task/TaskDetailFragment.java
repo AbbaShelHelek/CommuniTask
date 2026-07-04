@@ -40,10 +40,13 @@ public class TaskDetailFragment extends Fragment {
         viewModel = new ViewModelProvider(this).get(TaskEditorViewModel.class);
         taskId = getArguments() == null ? null : getArguments().getString(ARG_TASK_ID);
 
+        registerDeleteResultListener();
         binding.editTaskButton.setOnClickListener(v -> navigateToEditor());
+        binding.deleteTaskButton.setOnClickListener(v -> showDeleteDialog());
 
         viewModel.getTaskState().observe(getViewLifecycleOwner(), this::renderTaskState);
         viewModel.getOwnerPermissionState().observe(getViewLifecycleOwner(), this::renderOwnerState);
+        viewModel.getDeleteState().observe(getViewLifecycleOwner(), this::renderDeleteState);
     }
 
     @Override
@@ -58,6 +61,25 @@ public class TaskDetailFragment extends Fragment {
             return;
         }
         viewModel.loadTask(taskId);
+    }
+
+    private void registerDeleteResultListener() {
+        getParentFragmentManager().setFragmentResultListener(
+                ConfirmDeleteTaskDialogFragment.REQUEST_KEY,
+                getViewLifecycleOwner(),
+                (requestKey, result) -> {
+                    boolean confirmed = result.getBoolean(
+                            ConfirmDeleteTaskDialogFragment.RESULT_CONFIRMED,
+                            false
+                    );
+                    String confirmedTaskId = result.getString(
+                            ConfirmDeleteTaskDialogFragment.RESULT_TASK_ID
+                    );
+                    if (confirmed && taskId != null && taskId.equals(confirmedTaskId)) {
+                        viewModel.deleteTask(taskId);
+                    }
+                }
+        );
     }
 
     private void renderTaskState(UiState<CommunityTask> state) {
@@ -93,6 +115,31 @@ public class TaskDetailFragment extends Fragment {
         binding.deleteTaskButton.setEnabled(canManage);
     }
 
+    private void renderDeleteState(UiState<Void> state) {
+        if (state == null) {
+            return;
+        }
+
+        boolean isLoading = state.getStatus() == UiState.Status.LOADING;
+        boolean canManage = binding.taskManagementGroup.getVisibility() == View.VISIBLE;
+        binding.editTaskButton.setEnabled(!isLoading && canManage);
+        binding.deleteTaskButton.setEnabled(!isLoading && canManage);
+
+        if (state.getStatus() == UiState.Status.ERROR) {
+            binding.taskDetailErrorText.setText(R.string.task_detail_delete_error);
+            binding.taskDetailErrorText.setVisibility(View.VISIBLE);
+            return;
+        }
+
+        if (state.getStatus() == UiState.Status.SUCCESS) {
+            NavController navController = NavHostFragment.findNavController(this);
+            if (navController.getCurrentDestination() != null
+                    && navController.getCurrentDestination().getId() == R.id.taskDetailFragment) {
+                navController.navigateUp();
+            }
+        }
+    }
+
     private void renderTask(CommunityTask task) {
         binding.taskTitleText.setText(getTextOrFallback(
                 task.getTitle(),
@@ -126,6 +173,21 @@ public class TaskDetailFragment extends Fragment {
         Bundle arguments = new Bundle();
         arguments.putString(ARG_TASK_ID, taskId);
         navController.navigate(R.id.action_taskDetailFragment_to_taskEditorFragment, arguments);
+    }
+
+    private void showDeleteDialog() {
+        NavController navController = NavHostFragment.findNavController(this);
+        if (navController.getCurrentDestination() == null
+                || navController.getCurrentDestination().getId() != R.id.taskDetailFragment) {
+            return;
+        }
+
+        Bundle arguments = new Bundle();
+        arguments.putString(ConfirmDeleteTaskDialogFragment.ARG_TASK_ID, taskId);
+        navController.navigate(
+                R.id.action_taskDetailFragment_to_confirmDeleteTaskDialogFragment,
+                arguments
+        );
     }
 
     private void showLoadingState() {
