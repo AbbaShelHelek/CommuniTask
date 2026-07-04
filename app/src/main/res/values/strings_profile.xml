@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="profile_eyebrow">Profile</string>
+    <string name="profile_title">Your profile</string>
+    <string name="profile_subtitle">Keep your display name current for community task coordination.</string>
+    <string name="profile_loading">Loading profile...</string>
+    <string name="profile_display_name_hint">Display name</string>
+    <string name="profile_email_label">Email</string>
+    <string name="profile_save_button">Save changes</string>
+    <string name="profile_logout_button">Logout</string>
+    <string name="profile_error_load_failed">Unable to load your profile. Please try again later.</string>
+    <string name="profile_error_signed_out">Sign in to view your profile.</string>
+    <string name="profile_error_not_found">Profile details were not found.</string>
+    <string name="profile_error_display_name_required">Enter your display name.</string>
+    <string name="profile_error_update_failed">Unable to update your profile. Please try again later.</string>
+    <string name="profile_update_success">Profile updated.</string>
+    <string name="profile_logout_success">Logged out.</string>
+</resources>
