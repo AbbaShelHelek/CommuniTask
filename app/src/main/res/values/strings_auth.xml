@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="auth_login_title">Login</string>
+    <string name="auth_login_eyebrow">CommuniTask</string>
+    <string name="auth_login_subtitle">Coordinate local help without losing the thread.</string>
+    <string name="auth_register_title">Create account</string>
+    <string name="auth_register_eyebrow">Join CommuniTask</string>
+    <string name="auth_register_subtitle">Set up your profile before posting or managing tasks.</string>
+    <string name="auth_display_name_hint">Display name</string>
+    <string name="auth_email_hint">Email</string>
+    <string name="auth_password_hint">Password</string>
+    <string name="auth_confirm_password_hint">Confirm password</string>
+    <string name="auth_login_button">Login</string>
+    <string name="auth_register_button">Create account</string>
+    <string name="auth_go_to_register">Create an account</string>
+    <string name="auth_go_to_login">Back to login</string>
+    <string name="auth_error_display_name_required">Enter your display name.</string>
+    <string name="auth_error_invalid_email">Enter a valid email address.</string>
+    <string name="auth_error_invalid_password">Password must be at least 6 characters.</string>
+    <string name="auth_error_password_mismatch">Passwords do not match.</string>
+    <string name="auth_error_login_failed">Login failed. Check your email and password.</string>
+    <string name="auth_error_registration_failed">Registration failed. Please check your details and try again.</string>
+    <string name="auth_error_profile_setup_failed">Account created, but profile setup failed. Tap Create account to retry.</string>
+</resources>

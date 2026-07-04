@@ -1,0 +1,179 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/bg_task_list_screen">
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:clipToPadding="false"
+        android:fillViewport="true"
+        android:padding="@dimen/spacing_medium">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <LinearLayout
+                android:id="@+id/task_detail_loading_group"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:orientation="vertical"
+                android:padding="@dimen/spacing_large">
+
+                <ProgressBar
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:indeterminateTint="@color/task_accent" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/spacing_medium"
+                    android:text="@string/task_detail_loading"
+                    android:textAppearance="?attr/textAppearanceBodyMedium"
+                    android:textColor="@color/task_muted" />
+            </LinearLayout>
+
+            <TextView
+                android:id="@+id/task_detail_error_text"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@drawable/bg_task_state_message"
+                android:gravity="center"
+                android:padding="@dimen/spacing_medium"
+                android:text="@string/task_detail_load_error"
+                android:textAppearance="?attr/textAppearanceBodyLarge"
+                android:textColor="@color/task_accent"
+                android:visibility="gone" />
+
+            <TextView
+                android:id="@+id/task_detail_missing_text"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@drawable/bg_task_state_message"
+                android:gravity="center"
+                android:padding="@dimen/spacing_medium"
+                android:text="@string/task_detail_missing"
+                android:textAppearance="?attr/textAppearanceBodyLarge"
+                android:textColor="@color/task_muted"
+                android:visibility="gone" />
+
+            <LinearLayout
+                android:id="@+id/task_detail_content"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:visibility="gone">
+
+                <com.google.android.material.card.MaterialCardView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    app:cardBackgroundColor="@color/task_card_background"
+                    app:cardCornerRadius="24dp"
+                    app:cardElevation="3dp"
+                    app:strokeColor="@color/task_card_stroke"
+                    app:strokeWidth="1dp">
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical"
+                        android:padding="@dimen/spacing_medium">
+
+                        <TextView
+                            android:id="@+id/task_detail_eyebrow_text"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:letterSpacing="0.12"
+                            android:text="@string/task_detail_eyebrow"
+                            android:textAllCaps="true"
+                            android:textAppearance="?attr/textAppearanceLabelLarge"
+                            android:textColor="@color/task_accent" />
+
+                        <TextView
+                            android:id="@+id/task_title_text"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="@dimen/spacing_small"
+                            android:text="@string/task_list_title_fallback"
+                            android:textAppearance="?attr/textAppearanceHeadlineLarge"
+                            android:textColor="@color/task_ink" />
+
+                        <TextView
+                            android:id="@+id/task_description_text"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="@dimen/spacing_medium"
+                            android:text="@string/task_list_description_fallback"
+                            android:textAppearance="?attr/textAppearanceBodyLarge"
+                            android:textColor="@color/task_muted" />
+
+                        <TextView
+                            android:id="@+id/task_category_text"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="@dimen/spacing_medium"
+                            android:background="@drawable/bg_task_meta_chip"
+                            android:padding="@dimen/spacing_medium"
+                            android:text="@string/task_list_category_fallback"
+                            android:textAppearance="?attr/textAppearanceLabelLarge"
+                            android:textColor="@color/task_accent" />
+
+                        <TextView
+                            android:id="@+id/task_status_text"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="@dimen/spacing_small"
+                            android:background="@drawable/bg_task_status_chip"
+                            android:padding="@dimen/spacing_medium"
+                            android:text="@string/task_list_status_fallback"
+                            android:textAppearance="?attr/textAppearanceLabelLarge"
+                            android:textColor="@color/task_accent" />
+
+                        <TextView
+                            android:id="@+id/task_owner_text"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="@dimen/spacing_medium"
+                            android:letterSpacing="0.08"
+                            android:text="@string/task_list_owner_fallback"
+                            android:textAllCaps="true"
+                            android:textAppearance="?attr/textAppearanceLabelLarge"
+                            android:textColor="@color/task_muted" />
+                    </LinearLayout>
+                </com.google.android.material.card.MaterialCardView>
+
+                <LinearLayout
+                    android:id="@+id/task_management_group"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/spacing_medium"
+                    android:orientation="horizontal"
+                    android:visibility="gone">
+
+                    <com.google.android.material.button.MaterialButton
+                        android:id="@+id/edit_task_button"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginEnd="@dimen/spacing_small"
+                        android:layout_weight="1"
+                        android:text="@string/task_detail_edit_button" />
+
+                    <com.google.android.material.button.MaterialButton
+                        android:id="@+id/delete_task_button"
+                        style="?attr/materialButtonOutlinedStyle"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="@dimen/spacing_small"
+                        android:layout_weight="1"
+                        android:text="@string/task_detail_delete_button" />
+                </LinearLayout>
+            </LinearLayout>
+        </LinearLayout>
+    </ScrollView>
+</FrameLayout>
