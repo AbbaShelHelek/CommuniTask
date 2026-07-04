@@ -24,4 +24,13 @@
     <string name="my_tasks_empty">You have not created any tasks yet.</string>
     <string name="my_tasks_error">Unable to load your tasks. Please try again later.</string>
     <string name="my_tasks_signed_out">Sign in to view your tasks.</string>
+    <string name="task_detail_eyebrow">Task details</string>
+    <string name="task_detail_loading">Loading task details...</string>
+    <string name="task_detail_missing">This task could not be found.</string>
+    <string name="task_detail_load_error">Unable to load this task. Please try again later.</string>
+    <string name="task_detail_category_format">Category: %1$s</string>
+    <string name="task_detail_status_format">Status: %1$s</string>
+    <string name="task_detail_owner_format">Created by %1$s</string>
+    <string name="task_detail_edit_button">Edit</string>
+    <string name="task_detail_delete_button">Delete</string>
 </resources>
