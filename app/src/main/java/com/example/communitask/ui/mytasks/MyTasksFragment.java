@@ -42,6 +42,11 @@ public class MyTasksFragment extends Fragment {
 
         setupRecyclerView();
         viewModel.getTasksState().observe(getViewLifecycleOwner(), this::renderTasksState);
+    }
+
+    @Override
+    public void onResume() {
+        super.onResume();
         viewModel.loadMyTasks();
     }
 

@@ -59,6 +59,14 @@
                     android:text="@string/task_feed_subtitle"
                     android:textAppearance="?attr/textAppearanceBodyLarge"
                     android:textColor="@color/task_muted" />
+
+                <com.google.android.material.button.MaterialButton
+                    android:id="@+id/create_task_button"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/spacing_medium"
+                    android:contentDescription="@string/task_feed_create_content_description"
+                    android:text="@string/task_feed_create_button" />
             </LinearLayout>
         </com.google.android.material.card.MaterialCardView>
 

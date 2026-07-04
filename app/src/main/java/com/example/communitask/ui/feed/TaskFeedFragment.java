@@ -41,7 +41,13 @@ public class TaskFeedFragment extends Fragment {
         viewModel = new ViewModelProvider(this).get(TaskFeedViewModel.class);
 
         setupRecyclerView();
+        binding.createTaskButton.setOnClickListener(v -> navigateToTaskEditor());
         viewModel.getTasksState().observe(getViewLifecycleOwner(), this::renderTasksState);
+    }
+
+    @Override
+    public void onResume() {
+        super.onResume();
         viewModel.loadTasks();
     }
 
@@ -122,6 +128,15 @@ public class TaskFeedFragment extends Fragment {
         Bundle arguments = new Bundle();
         arguments.putString("taskId", task.getId());
         navController.navigate(R.id.action_taskFeedFragment_to_taskDetailFragment, arguments);
+    }
+
+    private void navigateToTaskEditor() {
+        NavController navController = NavHostFragment.findNavController(this);
+        if (navController.getCurrentDestination() == null
+                || navController.getCurrentDestination().getId() != R.id.taskFeedFragment) {
+            return;
+        }
+        navController.navigate(R.id.action_taskFeedFragment_to_taskEditorFragment);
     }
 
     @Override
