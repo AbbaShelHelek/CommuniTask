@@ -33,4 +33,18 @@
     <string name="task_detail_owner_format">Created by %1$s</string>
     <string name="task_detail_edit_button">Edit</string>
     <string name="task_detail_delete_button">Delete</string>
+    <string name="task_editor_eyebrow">Task editor</string>
+    <string name="task_editor_create_title">Create task</string>
+    <string name="task_editor_edit_title">Edit task</string>
+    <string name="task_editor_loading">Loading task...</string>
+    <string name="task_editor_title_hint">Title</string>
+    <string name="task_editor_description_hint">Description</string>
+    <string name="task_editor_category_hint">Category</string>
+    <string name="task_editor_save_button">Save task</string>
+    <string name="task_editor_title_error">Enter a title with at least 3 characters.</string>
+    <string name="task_editor_category_error">Enter a category.</string>
+    <string name="task_editor_load_error">Unable to load this task for editing.</string>
+    <string name="task_editor_missing_error">This task is no longer available.</string>
+    <string name="task_editor_permission_error">Only the task owner can edit this task.</string>
+    <string name="task_editor_save_error">Unable to save this task. Please try again later.</string>
 </resources>
